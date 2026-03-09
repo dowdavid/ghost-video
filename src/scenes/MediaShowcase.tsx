@@ -20,6 +20,8 @@ export const MediaShowcase: React.FC<Props> = ({
   display,
   caption,
   startFrom: mediaStartFrom,
+  zoom,
+  zoomOrigin,
   durationInFrames,
 }) => {
   const frame = useCurrentFrame();
@@ -48,25 +50,25 @@ export const MediaShowcase: React.FC<Props> = ({
   });
 
   const mediaSrc = staticFile(src);
+  const zoomScale = zoom ?? 1;
+  const origin = zoomOrigin ?? "center center";
+
+  const mediaStyle: React.CSSProperties = {
+    width: "100%",
+    display: "block",
+    transform: zoomScale !== 1 ? `scale(${zoomScale})` : undefined,
+    transformOrigin: zoomScale !== 1 ? origin : undefined,
+  };
 
   const MediaElement =
     media === "video" ? (
       <Video
         src={mediaSrc}
         startFrom={mediaStartFrom ?? 0}
-        style={{
-          width: "100%",
-          display: "block",
-        }}
+        style={mediaStyle}
       />
     ) : (
-      <Img
-        src={mediaSrc}
-        style={{
-          width: "100%",
-          display: "block",
-        }}
-      />
+      <Img src={mediaSrc} style={mediaStyle} />
     );
 
   const renderMedia = () => {
