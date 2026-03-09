@@ -37,6 +37,8 @@ const renderScene = (scene: Scene) => {
           display={scene.display}
           caption={scene.caption}
           startFrom={scene.startFrom}
+          zoom={scene.zoom}
+          zoomOrigin={scene.zoomOrigin}
           durationInFrames={scene.durationInFrames}
         />
       );

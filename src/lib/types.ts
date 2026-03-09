@@ -18,6 +18,8 @@ export type MediaShowcaseScene = {
   display: "full" | "floating" | "device";
   caption?: string;
   startFrom?: number;
+  zoom?: number;
+  zoomOrigin?: string;
   durationInFrames: number;
 };
 
